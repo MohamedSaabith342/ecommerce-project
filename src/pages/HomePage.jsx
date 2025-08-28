@@ -5,6 +5,11 @@ import { products } from '../../starting-code/data/products'
 
 
 export function HomePage() {
+  fetch("http://localhost:3000/api/products")
+  .then((res)=>{
+    console.log(res);
+  })
+
   return (
     <>
       <title>Ecommerce Project</title>
