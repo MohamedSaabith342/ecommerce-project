@@ -2,7 +2,7 @@
 import './HomePage.css'
 import { Header } from '../components/Header';
 import { products } from '../../starting-code/data/products'
-//helllo
+
 
 export function HomePage() {
   return (
