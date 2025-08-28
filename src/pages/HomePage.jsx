@@ -14,11 +14,21 @@ export function HomePage() {
   // })
 
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+
     useEffect(()=>{
       axios.get("http://localhost:3000/api/products").then((response)=>{
         setProducts(response.data);
         console.log("hello");
       })
+
+       axios.get("http://localhost:3000/api/cart-items").then((response)=>{
+        setProducts(response.data);
+        setCart(response.data);
+      })
+
+
+
     },[]);
 
    
@@ -29,7 +39,7 @@ export function HomePage() {
     <>
       
       <title>Ecommerce Project</title>
-      <Header />
+      <Header cart={cart} />
 
       <div className="home-page">
         <div className="products-grid">
