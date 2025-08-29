@@ -5,9 +5,9 @@ import axios from 'axios';
 import {  useEffect, useState } from 'react';
 
 
-export function HomePage() {
+export function HomePage({cart}) {
   const [products,setProduct] = useState([])
-  const [cart, setCart] = useState([])
+ 
 
   console.log("initial products")
   console.log(products)
@@ -19,12 +19,6 @@ export function HomePage() {
       console.log("inside axios")
       console.log(response.data);
     });
-
-    axios.get("/api/cart-items").then((response)=>{
-      console.log("insideaxios for cart")
-      console.log(response.data);
-      setCart(response.data);
-    })
 
   },[])
   

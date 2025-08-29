@@ -4,19 +4,32 @@ import './App.css'
 import { HomePage } from './pages/HomePage'
 import { CheckoutPage } from './pages/CheckoutPage'
 import { OrdersPage } from './pages/OrdersPage'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  useEffect(()=>{
+    axios.get("/api/cart-items").then((response)=>{
+      console.log("insideaxios for cart")
+      console.log(response.data);
+      setCart(response.data);
+    })
   
+  },[])
+
+   
 
   return (
     <Routes>
       <Route 
         path='/' 
-        element={<HomePage/> }>
+        element={<HomePage cart={cart}/> }>
       </Route>
       <Route 
         path='checkout' 
-        element={<CheckoutPage />}>
+        element={<CheckoutPage cart={cart} />}>
       </Route>
       <Route 
         path='orders' 
