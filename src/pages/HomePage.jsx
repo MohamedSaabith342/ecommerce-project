@@ -1,43 +1,37 @@
-
 import './HomePage.css'
 import { Header } from '../components/Header';
-import axios from 'axios'
-import { useEffect, useState } from 'react';
+//import { products } from '../../starting-code/data/products'
+import axios from 'axios';
+import {  useEffect, useState } from 'react';
 
 
 export function HomePage() {
-  // fetch("http://localhost:3000/api/products")
-  // .then((res)=>{
-  //   res.json().then((data)=>{
-  //     console.log(data);
-  //   })
-  // })
+  const [products,setProduct] = useState([])
+  const [cart, setCart] = useState([])
 
-    const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+  console.log("initial products")
+  console.log(products)
 
-    useEffect(()=>{
-      axios.get("http://localhost:3000/api/products").then((response)=>{
-        setProducts(response.data);
-        console.log("hello");
-      })
+ 
+  useEffect(()=>{
+      axios.get("/api/products").then((response)=>{
+      setProduct(response.data)
+      console.log("inside axios")
+      console.log(response.data);
+    });
 
-       axios.get("http://localhost:3000/api/cart-items").then((response)=>{
-        setProducts(response.data);
-        setCart(response.data);
-      })
+    axios.get("/api/cart-items").then((response)=>{
+      console.log("insideaxios for cart")
+      console.log(response.data);
+      setCart(response.data);
+    })
 
-
-
-    },[]);
-
-   
-
-
-
+  },[])
+  
   return (
     <>
-      
+      {console.log("homeHTML")}
+      {console.log(products)}
       <title>Ecommerce Project</title>
       <Header cart={cart} />
 
