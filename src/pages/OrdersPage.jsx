@@ -8,6 +8,7 @@ import { formatMoney } from '../utils/money';
 import dayjs from 'dayjs';
 
 export function OrdersPage({ cart }) {
+  console.log("This is orders Page")
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     axios.get('/api/orders?expand=products')

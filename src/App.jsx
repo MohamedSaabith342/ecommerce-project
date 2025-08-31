@@ -8,15 +8,19 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 function App() {
+  console.log("this is app")
   const [cart, setCart] = useState([]);
 
-  useEffect(()=>{
-    const fetchAppData = async () =>{
+  const loadCart = async () =>{
       const response = await axios.get("/api/cart-items?expand=product");
       setCart(response.data)
     }
 
-    fetchAppData();
+  useEffect(()=>{
+    console.log("inside useEffect app")
+    
+
+    loadCart();
   
   },[])
 
@@ -26,7 +30,7 @@ function App() {
     <Routes>
       <Route 
         path='/' 
-        element={<HomePage cart={cart}/> }>
+        element={<HomePage cart={cart} loadCart={loadCart}/> }>
       </Route>
       <Route 
         path='checkout' 
